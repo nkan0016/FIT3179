@@ -1,0 +1,37 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Prison Population per 10,000 People in USA (2016)",
+    "width": 800,
+    "height": 400,
+    "projection": {"type": "albersUsa"},
+    "data": {
+        "url": "us_states.json",
+        "format": {"type": "topojson", "feature": "gz_2010_us_040_00_20m"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "prison_custody_by_state.csv",
+              "format": {"type": "csv"}
+            },
+            "key": "jurisdiction",
+            "fields": ["state"]
+          }
+        },
+        {"calculate": "datum.state + 1", "as": "Prison Population"}
+      ],
+      "mark": {"type": "geoshape"},
+      "encoding": {
+        "color": {
+          "field": "Prison Population",
+          "type": "quantitative",
+          "scale": {"type": "log"}
+        },
+        "tooltip": [
+          {"field": "properties.NAME", "type": "nominal", "title": "State"},
+          {"field": "Prison Population", "type": "quantitative"}
+        ]
+      }
+}
