@@ -1,5 +1,4 @@
 jurisdiction,includes_jails,year,prisoner_count,crime_reporting_change,crimes_estimated,state_population,violent_crime_total,murder_manslaughter,rape_legacy,rape_revised,robbery,agg_assault,property_crime_total,burglary,larceny,vehicle_theft
-FEDERAL,False,2001,149852,,,,,,,,,,,,,
 ALABAMA,False,2001,24741,False,False,4468912.0,19582.0,379.0,1369.0,,5584.0,12250.0,173253.0,40642.0,119992.0,12619.0
 ALASKA,True,2001,4570,False,False,633630.0,3735.0,39.0,501.0,,514.0,2681.0,23160.0,3847.0,16695.0,2618.0
 ARIZONA,False,2001,27710,False,False,5306966.0,28675.0,400.0,1518.0,,8868.0,17889.0,293874.0,54821.0,186850.0,52203.0
