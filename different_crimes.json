@@ -12,12 +12,14 @@
       "bind": {
         "input": "select",
         "options": [
+          null,
           "CALIFORNIA",
           "FLORIDA",
           "NEW YORK",
           "TEXAS"
         ],
         "labels": [
+          "None",
           "California",
           "Florida",
           "New York",
@@ -30,7 +32,7 @@
 
   "transform": [
     {"filter": "datum.jurisdiction == 'CALIFORNIA' || datum.jurisdiction == 'TEXAS' || datum.jurisdiction == 'FLORIDA' || datum.jurisdiction == 'NEW YORK'"},
-    {"filter": "State_selection == null || datum.jurisdiction == State_selection"},
+    {"filter": "datum.jurisdiction == State_selection"},
 
     {"calculate": "datum.prisoner_count/datum.state_population * 10000", "as": "Total Prisoners"},
     {"calculate": "datum.robbery/datum.state_population * 10000", "as": "Robberies"},
@@ -43,12 +45,12 @@
 
   "layer": [
     {
-      "mark": "line",
+      "mark": {"type": "line", "point": true},
       "encoding": {
         "x": {
           "field": "year",
           "type": "temporal",
-          "timeUnit": "yearmonth",
+          "timeUnit": "year",
           "axis": {"title": "Year", "tickCount": 10, "grid": false}
         },
         "y": {
@@ -63,25 +65,31 @@
         },
         "tooltip": [
           {"field": "jurisdiction", "type": "nominal", "title": "Jurisdiction"},
-          {"field": "prisoner_count", "type": "quantitative", "title": "Prisoners"},
-          {"field": "robbery", "type": "quantitative", "title": "Robberies"},
-          {"field": "agg_assault", "type": "quantitative", "title": "Assaults"},
-          {"field": "burglary", "type": "quantitative", "title": "Burglaries"},
-          {"field": "vehicle_theft", "type": "quantitative", "title": "Vehicle Thefts"}
+          {"field": "prisoner_count", "type": "quantitative", "title": "Prisoners", "format": ","},
+          {"field": "robbery", "type": "quantitative", "title": "Robberies", "format": ","},
+          {"field": "agg_assault", "type": "quantitative", "title": "Assaults", "format": ","},
+          {"field": "burglary", "type": "quantitative", "title": "Burglaries", "format": ","},
+          {"field": "vehicle_theft", "type": "quantitative", "title": "Vehicle Thefts", "format": ","}
         ]
       }
     },
     {
       "data": {"values": [{}]},
       "mark": {"type": "rule", "strokeDash": [2, 2], "size": 2},
-      "encoding": {
-        "x": {"datum": {"year": 2008}}
-      }
+      "encoding": {"x": {"datum": {"year": 2008}}}
     },
     {
+      "data": {
+        "values": [{
+          "x": 1202999999991,
+          "y": 3
+        }]
+      },
       "mark": {"type": "text", "align": "left"},
       "encoding": {
-        "text": {"value": "Greatest Total Prison Population in America"}
+        "text": {"value": "2008 had the highest total prison population in America!"},
+        "x": {"field": "x", "type": "temporal"},
+        "y": {"field": "y", "type": "quantitative"}
       }
     }
   ]
