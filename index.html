@@ -5,18 +5,40 @@
     <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    
+     <!-- Import pure.css -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>FIT3179: Homework Week 9</title>
+    <title>FIT3179: Homework Week 10</title>
 </head>
+    
 <body>
-    <div id="choropleth_map", style="top:100px;bottom: 100px; left: 100px;right: 100px;"></div>
-
+    <div class="page">
+        
+        <div class="pure-u-1-2">
+            <div id="choropleth_map", style="top:100px;bottom: 100px; left: 100px;right: 100px;"></div>
+        </div>
+        
+        <div class="pure-u-1-2">
+            <div id="different_crimes", style="top:100px;bottom: 100px; left: 100px;right: 100px;"></div>
+        </div>
+    
+    </div>
+    
     <script type="text/javascript">
+        var spec1 = "usamap.json";
+        var spec2 = "different_crimes.json";
 
-    var spec2 = "usamap.json";
-    vegaEmbed('#choropleth_map', spec2, {"actions": false}).then(function(result) {
-        // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-    }).catch(console.error);
-</script>
+        vegaEmbed('#choropleth_map', spec1, {"actions": false}).then(function(result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+
+        vegaEmbed('#different_crimes', spec1, {"actions": false}).then(function(result) {
+            // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+        }).catch(console.error);
+    </script>
+    
 </body>
 </html>
